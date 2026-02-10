@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    --background: 30 100% 97%;
+    --foreground: 20 40% 25%;
+    --card: 30 100% 98%;
+    --card-foreground: 20 40% 25%;
+    --popover: 30 100% 98%;
+    --popover-foreground: 20 40% 25%;
+    --primary: 18 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 25 100% 92%;
+    --secondary-foreground: 20 40% 25%;
+    --muted: 25 60% 92%;
+    --muted-foreground: 20 30% 45%;
+    --accent: 18 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 50% 85%;
+    --input: 25 50% 88%;
+    --ring: 18 100% 65%;
+    --chart-1: 18 100% 65%;
+    --chart-2: 25 100% 75%;
+    --chart-3: 15 100% 70%;
+    --chart-4: 30 100% 80%;
+    --chart-5: 35 100% 85%;
+    --sidebar-background: 30 100% 96%;
+    --sidebar-foreground: 20 40% 25%;
+    --sidebar-primary: 18 100% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 25 100% 92%;
+    --sidebar-accent-foreground: 20 40% 25%;
+    --sidebar-border: 25 50% 85%;
+    --sidebar-ring: 18 100% 65%;
+  }
+
+  .dark {
+    --background: 20 30% 10%;
+    --foreground: 30 50% 90%;
+    --card: 20 30% 12%;
+    --card-foreground: 30 50% 90%;
+    --popover: 20 30% 12%;
+    --popover-foreground: 30 50% 90%;
+    --primary: 18 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 20 25% 18%;
+    --secondary-foreground: 30 50% 90%;
+    --muted: 20 25% 18%;
+    --muted-foreground: 30 30% 60%;
+    --accent: 18 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 25% 20%;
+    --input: 20 25% 20%;
+    --ring: 18 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+/* Падающие лепестки сакуры */
+.petal {
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  z-index: 1000;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) rotate(90deg) translateX(30px);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(-20px);
+  }
+  75% {
+    transform: translateY(75vh) rotate(270deg) translateX(25px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+/* Плавное появление */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Пульсация сердца */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Свечение текста */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 140, 105, 0.4), 0 0 40px rgba(255, 140, 105, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 140, 105, 0.7), 0 0 60px rgba(255, 140, 105, 0.4);
+  }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Плавающие частицы */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Лавовая лампа фон */
+.lava-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: lavaMove 20s ease-in-out infinite;
+}
+
+@keyframes lavaMove {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* Видео карточка */
+.video-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.video-card .play-btn {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-card:hover .play-btn {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Манга карточка */
+.manga-card {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.manga-card:hover {
+  transform: translateY(-8px) rotate(1deg) scale(1.02);
+}
+
+.manga-card img {
+  transition: transform 0.6s ease;
+}
+
+.manga-card:hover img {
+  transform: scale(1.08);
+}
+
+.manga-card .overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.manga-card:hover .overlay {
+  opacity: 1;
+}
+
+.manga-card .view-btn {
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.manga-card:hover .view-btn {
+  transform: translateY(0);
+}
+
+/* Модальное окно */
+.modal-enter {
+  animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 212, 196, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff8c69, #ffb088);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff7043, #ff8c69);
+}
